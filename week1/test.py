@@ -18,6 +18,3 @@ def add(x,y):
 print(add(5,6))
 print(100//3)
 print(100/3)
-
-
-
