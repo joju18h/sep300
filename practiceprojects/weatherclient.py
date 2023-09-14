@@ -48,8 +48,6 @@ def main():
 
     latitude = location_data['lat']
     longitude = location_data['lon']
-
-    print(latitude, longitude)
     
     weather_data = getWeather(latitude, longitude, API_KEY)
 
