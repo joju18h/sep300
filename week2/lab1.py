@@ -12,7 +12,6 @@ async def fetch_data(url):
         return f"{url} has returned an OK response"
     else:
         return f"Request failed for {url}"
-            
 
 async def main():
     tasks = [
