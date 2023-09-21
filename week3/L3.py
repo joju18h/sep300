@@ -11,21 +11,12 @@ scores = {"Alice": 85,
           "Bob": 90,
           "Alicia" : 75}
 
-#increment function
-def increment(x):
-    return x + 5
-
-#filter function
-def isAbove80(x):
-    if x > 80:
-        return x
-
 #List Comprehension
 squared = list(map(lambda x: x**2, numbers))
 print("Squared list:", squared)
 
 #Dictionary Comprehension
-modified_values = map(increment,scores.values())
+modified_values = map(lambda x: x + 5 ,scores.values())
 modified_dict = dict(zip(scores.keys(), modified_values))
 print("Dictionary with scores +5: ", modified_dict)
 
@@ -38,8 +29,7 @@ evenNumbers = list(filter(lambda x: x % 2 == 0, numbers))
 print("List with even numbers only: ", evenNumbers)
 
 #Dictionary Comprehension
-above80 = filter(isAbove80, scores.values())
+above80 = filter(lambda x: x if x > 80 else None, scores.values())
 above80_dict = dict(zip(scores.keys(), above80))
 print("Scores above 80:", above80_dict)
-
 
