@@ -29,7 +29,7 @@ evenNumbers = list(filter(lambda x: x % 2 == 0, numbers))
 print("List with even numbers only: ", evenNumbers)
 
 #Dictionary Comprehension
-above80 = filter(lambda x: x if x > 80 else None, scores.values())
-above80_dict = dict(zip(scores.keys(), above80))
-print("Scores above 80:", above80_dict)
-
+lessthan80 = filter(lambda x: x if x < 80 else None, scores.values())
+keyslessthan80 = filter(lambda x: x if scores[x] < 80 else None, scores.keys())
+lessthan80_dict = dict(zip(keyslessthan80, lessthan80))
+print("Scores below 80:", lessthan80_dict)
