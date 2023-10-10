@@ -80,7 +80,12 @@ def checkout(request):
     total_price = sum(item.product.price * item.quantity for item in cart_items)
 
     order = Order.objects.create(user=request.user, total_price=total_price)
-    order.items.set(cart_items)
+    
+    for cart_item in cart_items:
+        order_item = CartItem(cart=user_cart,product=cart_item.product, quantity=cart_item.quantity)
+        order_item.save()
+        order.items.add(order_item)
+
     order.save()
 
     cart_items.delete()
