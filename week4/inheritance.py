@@ -37,6 +37,8 @@ Enemy =  Enemy("Gob", 100000000000000000000000000000000000000000000000000000000,
 
 player.attack()
 Enemy.attack()
+player.attack()
+Enemy.attack()
 
 player.heal(10)
 Enemy.defend()
