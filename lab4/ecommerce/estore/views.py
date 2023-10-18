@@ -75,24 +75,26 @@ def view_cart(request):
 
 def checkout(request):
     user_cart = Cart.objects.get(user=request.user)
-    cart_items = user_cart.cartitem_set.all()
+    #get not used because multiple items can be returned
+    cart_items = CartItem.objects.filter(cart=user_cart)
 
     total_price = sum(item.product.price * item.quantity for item in cart_items)
 
-    order = Order.objects.create(user=request.user, total_price=total_price)
-    
-    for cart_item in cart_items:
-        order_item = CartItem(cart=user_cart,product=cart_item.product, quantity=cart_item.quantity)
-        order_item.save()
-        order.items.add(order_item)
-
+    order =  Order(user=request.user, total_price=total_price, shipping_address="some address")
     order.save()
 
-    cart_items.delete()
+    for cart_item in cart_items:
+        order_item = CartItem.objects.create(cart=user_cart, product=cart_item.product, quantity=cart_item.quantity)
+        order_item.save()
+        order.items.add(order_item)
     
+    order.save()
+
     context = {
         'cart_items': cart_items,
         'total_price': total_price,
     }
+    
+    cart_items.delete()
 
     return render(request, 'checkout.html', context)
